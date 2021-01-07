@@ -2,13 +2,13 @@ import requests
 import re
 from bs4 import BeautifulSoup as bs
 
-# Load the webpage content
-r = requests.get("")
+URL = "https://www.amazon.com/MSI-GeForce-Architecture-Overclocked-Graphics/dp/B08CLV8CKP/ref=sr_1_1?dchild=1&keywords=2080&qid=1610047787&s=electronics&sr=1-1"
 
-# Convert to a beautiful soup object
-soup = bs(r.content, features="html.parser")
+headers = {"User-Agent": 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'}
 
-# Pretty prints out our html
-print(soup.prettify())
+page = requests.get(URL, headers=headers)
 
-links = soup.select("a")
+soup = bs(page.content, 'html.parser')
+
+title = soup.find(id="productTitle")
+print(title.strip())
