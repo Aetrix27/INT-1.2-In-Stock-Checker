@@ -10,5 +10,9 @@ page = requests.get(URL, headers=headers)
 
 soup = bs(page.content, 'html.parser')
 
-title = soup.find(id="productTitle")
+title = soup.find(id="productTitle").get_text()
 print(title.strip())
+
+images = soup.find('img', attrs={"id": "landingImage"})
+
+print(images['data-old-hires']+'\n')
