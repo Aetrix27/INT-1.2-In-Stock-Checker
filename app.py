@@ -21,14 +21,23 @@ soup = bs(source_code, 'html.parser')
     #URL = filename
     #headers = {"User-Agent": 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'}
     #page = requests.get(URL, headers=headers)
+in_stock_string = ''
 
 title = soup.find(id="productTitle").get_text()
+in_stock = title = soup.find(id="availability").get_text()
+
+if 'stock' or 'Available' in in_stock:
+    in_stock_string = 'In Stock'
+else:
+    in_stock_string = 'Not In Stock'
+
+print(in_stock_string)
 
 image = soup.find('img', attrs={"id": "landingImage"})
 image_source = image['data-old-hires']+'\n'
 fixed_title = title.strip()
 
-#time.sleep(60*60*24)
+    #time.sleep(60*60*24)
 
 print(title.strip())
 print(image['data-old-hires']+'\n')
@@ -54,7 +63,8 @@ pp = PrettyPrinter(indent=4)
 def home():
     context = {
         'img_src' : image_source,
-        'title' : fixed_title
+        'title' : fixed_title,
+        'in_stock' : in_stock_string
 
     }
 
