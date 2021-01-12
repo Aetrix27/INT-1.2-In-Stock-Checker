@@ -30,6 +30,8 @@ def getItemInfo(url):
         
     if 'Currently unavailable' in product['availability']:
         product['stock'] = 'Out of Stock'
+    elif 'sellers' in product['availability']:
+        product['stock'] = 'In Stock (By Limited Sellers)'
     else:
         product['stock'] = 'In Stock'
      
@@ -113,6 +115,9 @@ def itemData():
 
     elif select == "Ps5":
         ps5Chosen = True
+    
+    elif select == "All":
+        allChosen = True
 
     name = 'graphicsCardInfo'
     graphicsCardInfo = {

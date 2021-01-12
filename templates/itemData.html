@@ -60,15 +60,33 @@
 
     {% if xboxSXChosen == True %}
         <div class="row m-5"> 
-        <div class="col-lg-6">
-            <img src = '{{imgSrcXboxSX}}'></img>
-            <p>{{titleXboxSX}}</p>
-            <p>{{inStockXboxSX}}</p>
-        </div>
+            <div class="col-lg-6">
+                <img src = '{{imgSrcXboxSX}}'></img>
+                <p>{{titleXboxSX}}</p>
+                <p>{{inStockXboxSX}}</p>
+            </div>
         </div>
     {% endif %}
 
+    {% if allChosen == True %}
+     
+        {% set dev = namespace(value=0) %}
+       
+        <div class="row m-5">  
+            {% for row in range(totalTitleArr|length) %}
 
+            {% set dev.value = dev.value + 1 %}
+                <div class="col lg-6">
+                    <img src = '{{totalImgArr[dev.value-1]}}'></img>
+                    <p>{{totalTitleArr[dev.value-1]}}</p>
+                    <p>{{totalStockArr[dev.value-1]}}</p>
+                </div>
+            
+            {% endfor %}
+        </div>
+
+
+    {% endif %}
 
 </body>
 
