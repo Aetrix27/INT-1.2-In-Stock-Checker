@@ -1,2 +1,2 @@
 # INT-1.2-In-Stock-Checker
- 
+ Checks whether popular graphics cards, Xboxs, or Playstations are In Stock from Amazon using web scraping and the requests-html API. You can select between each item from a drop down menu, and all of the items are automatically displayed.

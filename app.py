@@ -84,9 +84,58 @@ xboxSX = getItemInfo(urlXboxSX)
 
 @app.route('/')
 def home():
-    context = {
+    imgArr = []
+    titleArr = []
+    stockArr = []
+    totalImgArr = []
+    totalTitleArr = []
+    totalStockArr = []
+
+    name = 'graphicsCardInfo'
+    graphicsCardInfo = {
+        'name' : name,
+        'imgArr' : imgArr,
+        'titleArr' : titleArr,
+        'stockArr' : stockArr
 
     }
+
+    context = {
+        'graphicsCardInfo' : graphicsCardInfo,
+        'totalImgArr' : totalImgArr,
+        'totalStockArr' : totalStockArr,
+        'totalTitleArr' : totalTitleArr
+
+    }
+
+    for url in range(len(graphicsCardUrls)):
+        newContext, newGraphicsCardInfo = addDictValues(context, productArr[url], url, graphicsCardInfo, name)
+        graphicsCardInfo.update(newGraphicsCardInfo)
+        context.update(newContext)
+    
+    print(context['graphicsCardInfo']['stockArr'][0])
+
+    for ind in range(len(context['graphicsCardInfo']['imgArr'])):
+        totalImgArr.append(context['graphicsCardInfo']['imgArr'][ind])
+        totalTitleArr.append(context['graphicsCardInfo']['titleArr'][ind])
+        totalStockArr.append(context['graphicsCardInfo']['stockArr'][ind])
+
+    
+    context['imgSrcPs5'] = product3['image']
+    context['titlePs5'] = product3['title']
+    context['inStockPs5'] = product3['stock']
+
+    totalImgArr.append(product3['image'])
+    totalTitleArr.append(product3['title'])
+    totalStockArr.append(product3['stock'])
+
+    context['imgSrcXboxSX'] = xboxSX['image']
+    context['titleXboxSX'] = xboxSX['title']
+    context['inStockXboxSX'] = xboxSX['stock']
+
+    totalImgArr.append(xboxSX['image'])
+    totalTitleArr.append(xboxSX['title'])
+    totalStockArr.append(xboxSX['stock'])
 
     return render_template('index.html', **context) 
 
