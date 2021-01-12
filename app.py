@@ -17,7 +17,7 @@ urlXboxSX = 'https://www.amazon.com/Xbox-X/dp/B08H75RTZ8/ref=sr_1_13?dchild=1&ke
 def getItemInfo(url):
     s = HTMLSession()
     r = s.get(url)
-    r.html.render(sleep=1)
+    r.html.render()
 
     product = {
         'title': r.html.xpath('//*[@id="productTitle"]', first=True).text,
@@ -158,13 +158,10 @@ def itemData():
 
     if select == "Graphics":
         graphicsCardsChosen = True
-
     elif select == "XboxSX":
         xboxSXChosen = True
-
     elif select == "Ps5":
         ps5Chosen = True
-    
     elif select == "All":
         allChosen = True
 
