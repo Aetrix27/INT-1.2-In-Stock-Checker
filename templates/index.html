@@ -28,24 +28,24 @@
 
   <div class="jumbotron text-center" id="secondImage">
     <h1 class = "text-info">In Stock Graphics Cards</h1>
+
+    <form action="/itemData" method="GET">
+      <fieldset>
+        <select name = "choice">
+            <option value="Graphics">Graphics Cards</option>
+            <option value="XboxSX">Xbox Series X</option>
+            <option value="Ps5">Playstation 5</option>
+         
+        </select>
+
+        <p>
+          <input type="submit" value="Submit">
+      </p>
+    </fieldset>
+
+    </form>
+    </div>
     
-  </div>
-  <div class="row m-5">  
-    <div class="col-lg-4">
-      <img src = '{{img1}}'></img>
-      <p>{{title1}}</p>
-      <p>{{stock1}}</p>
-    </div>
-    <div class="col-lg-4">
-      <img src = '{{img2}}'></img>
-      <p>{{title2}}</p>
-      <p>{{stock2}}</p>
-    </div>
-    <div class="col-lg-4">
-      <img src = '{{imgSrcPs5}}'></img>
-      <p>{{titlePs5}}</p>
-      <p>{{inStockPs5}}</p>
-    </div>
   </div>
 
 
