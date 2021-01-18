@@ -1,9 +1,7 @@
 from requests_html import HTMLSession
 import jinja2
-import os
-import time
 
-from flask import Flask, request, render_template, send_file
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
