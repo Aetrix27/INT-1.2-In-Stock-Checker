@@ -3,12 +3,9 @@ import jinja2
 import os
 import time
 
-from pprint import PrettyPrinter
 from flask import Flask, request, render_template, send_file
 
 app = Flask(__name__)
-
-pp = PrettyPrinter(indent=4)
 
 graphicsCardUrls = ['https://www.amazon.com/EVGA-08G-P5-3767-KR-GeForce-Technology-Backplate/dp/B08L8L9TCZ/ref=sr_1_1?dchild=1&keywords=3070&qid=1610223381&s=electronics&sr=1-1',
                     'https://www.amazon.com/MSI-GeForce-Tri-Frozr-Architecture-Graphics/dp/B08HR7SV3M/ref=sr_1_3?crid=1Y1DLX8V0GXII&dchild=1&keywords=3080&qid=1610406031&s=electronics&sprefix=3080%2Celectronics%2C280&sr=1-3',
@@ -45,14 +42,6 @@ def getItemInfo(url):
     #   'price': 'item unavailable',
 
     return product
-
-################################################################################
-## SETUP
-################################################################################
-
-################################################################################
-## ROUTES
-################################################################################
 
 def addDictValues(context, product, loopNum, itemInfo, name):
     productImage = 'img' + str(loopNum+1) 
