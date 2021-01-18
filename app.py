@@ -8,9 +8,7 @@ from flask import Flask, request, render_template, send_file
 app = Flask(__name__)
 
 graphicsCardUrls = ['https://www.amazon.com/EVGA-08G-P5-3767-KR-GeForce-Technology-Backplate/dp/B08L8L9TCZ/ref=sr_1_1?dchild=1&keywords=3070&qid=1610223381&s=electronics&sr=1-1',
-                    'https://www.amazon.com/MSI-GeForce-Tri-Frozr-Architecture-Graphics/dp/B08HR7SV3M/ref=sr_1_3?crid=1Y1DLX8V0GXII&dchild=1&keywords=3080&qid=1610406031&s=electronics&sprefix=3080%2Celectronics%2C280&sr=1-3',
-                    'https://www.amazon.com/MSI-GeForce-Architecture-Overclocked-Graphics/dp/B08CLV8CKP/ref=sr_1_1?dchild=1&keywords=2080&qid=1610047787&s=electronics&sr=1-1',
-                    'https://www.amazon.com/MSI-RTX-2070-Super-Architecture/dp/B0856BVRFL/ref=pd_di_sccai_3/140-1216297-8899404?_encoding=UTF8&pd_rd_i=B0856BVRFL&pd_rd_r=b3eb018f-0a42-48fb-8cb6-ca8ed796a4fc&pd_rd_w=YQ1vP&pd_rd_wg=epyd0&pf_rd_p=c9443270-b914-4430-a90b-72e3e7e784e0&pf_rd_r=QYD5HM1P1RN7W9K1RNZV&psc=1&refRID=QYD5HM1P1RN7W9K1RNZV']
+                    'https://www.amazon.com/MSI-GeForce-Tri-Frozr-Architecture-Graphics/dp/B08HR7SV3M/ref=sr_1_3?crid=1Y1DLX8V0GXII&dchild=1&keywords=3080&qid=1610406031&s=electronics&sprefix=3080%2Celectronics%2C280&sr=1-3']
 
 urlPs5 = 'https://www.amazon.com/PlayStation-5-Console/dp/B08FC5L3RG?ref_=ast_sto_dp'
 xboxUrls = ['https://www.amazon.com/Xbox-X/dp/B08H75RTZ8/ref=sr_1_13?dchild=1&keywords=xbox+series+x&qid=1610417662&sr=8-13',
@@ -66,7 +64,7 @@ def addDictValues(context, product, loopNum, itemInfo, name):
 
     return context, itemInfo
 
-productArr = [getItemInfo(graphicsCardUrls[0]), getItemInfo(graphicsCardUrls[1]), getItemInfo(graphicsCardUrls[2]), getItemInfo(graphicsCardUrls[3])]
+productArr = [getItemInfo(graphicsCardUrls[0]), getItemInfo(graphicsCardUrls[1])]
 product3 = getItemInfo(urlPs5)
 xboxItemArr = [getItemInfo(xboxUrls[0]), getItemInfo(xboxUrls[1])]
 
