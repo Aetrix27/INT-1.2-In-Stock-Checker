@@ -16,7 +16,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
   <!-- BOOTSTRAP THEME -->
-  <link rel="stylesheet" href="https://bootswatch.com/13/sandstone/bootstrap.min.css">
+  <link rel="stylesheet" href="https://bootswatch.com/14/simplex/bootstrap.min.css">
 
   <!-- CUSTOM STYLES -->
 
@@ -35,7 +35,7 @@
         <select name = "choice">
             <option value="All">All</option>
             <option value="Graphics">Graphics Cards</option>
-            <option value="XboxSX">Xbox Series X</option>
+            <option value="Xbox SX/S">Xbox SX/S</option>
             <option value="Ps5">Playstation 5</option>
          
         </select>
@@ -44,7 +44,6 @@
           <input type="submit" value="Submit">
       </p>
     </fieldset>
-
     </form>
     </div>
     
@@ -59,8 +58,9 @@
       {% set dev.value = dev.value + 1 %}
           <div class="col lg-6">
               <img src = '{{totalImgArr[dev.value-1]}}'></img>
-              <p>{{totalTitleArr[dev.value-1]}}</p>
-              <p>{{totalStockArr[dev.value-1]}}</p>
+              <h6>{{totalTitleArr[dev.value-1]}}</h6>
+              <a href = '{{totalUrlArr[dev.value-1]}}'>{{totalStockArr[dev.value-1]}}</a>
+
           </div>
       
       {% endfor %}

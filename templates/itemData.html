@@ -16,7 +16,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
   <!-- BOOTSTRAP THEME -->
-  <link rel="stylesheet" href="https://bootswatch.com/13/sandstone/bootstrap.min.css">
+  <link rel="stylesheet" href="https://bootswatch.com/14/simplex/bootstrap.min.css">
 
   <!-- CUSTOM STYLES -->
 
@@ -39,8 +39,8 @@
                 {% set dev.value = dev.value + 1 %}
                     <div class="col lg-6">
                         <img src = '{{graphicsCardInfo["imgArr"][dev.value-1]}}'></img>
-                        <p>{{graphicsCardInfo['titleArr'][dev.value-1]}}</p>
-                        <p>{{graphicsCardInfo['stockArr'][dev.value-1]}}</p>
+                        <h6>{{graphicsCardInfo['titleArr'][dev.value-1]}}</h6>
+                        <a href = '{{graphicsCardInfo["urlArr"][dev.value-1]}}'>{{graphicsCardInfo['stockArr'][dev.value-1]}}</a>
                     </div>
                 
                 {% endfor %}
@@ -49,43 +49,50 @@
         {% endif %}
 
     {% if ps5Chosen == True %}
-        <div class="row m-5"> 
+    <div class="row m-5"> 
         <div class="col-lg-6">
             <img src = '{{imgSrcPs5}}'></img>
-            <p>{{titlePs5}}</p>
-            <p>{{inStockPs5}}</p>
+            <h6>{{titlePs5}}</h6>
+            <a href ="{{urlPs5}}"> {{inStockPs5}} </a>
+
         </div>
     </div>
     {% endif %}
 
-    {% if xboxSXChosen == True %}
-        <div class="row m-5"> 
-            <div class="col-lg-6">
-                <img src = '{{imgSrcXboxSX}}'></img>
-                <p>{{titleXboxSX}}</p>
-                <p>{{inStockXboxSX}}</p>
-            </div>
-        </div>
-    {% endif %}
-
-    {% if allChosen == True %}
-     
-        {% set dev = namespace(value=0) %}
-       
+    {% if xboxChosen == True %}
+        {% set dev2 = namespace(value=0) %}
+        
         <div class="row m-5">  
-            {% for row in range(totalTitleArr|length) %}
+            {% for row in range(xboxInfo["imgArr"]|length) %}
 
-            {% set dev.value = dev.value + 1 %}
+            {% set dev2.value = dev2.value + 1 %}
                 <div class="col lg-6">
-                    <img src = '{{totalImgArr[dev.value-1]}}'></img>
-                    <p>{{totalTitleArr[dev.value-1]}}</p>
-                    <p>{{totalStockArr[dev.value-1]}}</p>
+                    <img src = '{{xboxInfo["imgArr"][dev2.value-1]}}'></img>
+                    <h6>{{xboxInfo['titleArr'][dev2.value-1]}}</h6>
+                    <a href = '{{xboxInfo["urlArr"][dev2.value-1]}}'>{{xboxInfo['stockArr'][dev2.value-1]}}</a>
                 </div>
             
             {% endfor %}
         </div>
 
+    {% endif %}
+      
+    {% if allChosen == True %}
+        {% set dev = namespace(value=0) %}
+       
+        <div class="row m-5">  
+            {% for row in range(totalTitleArr|length) %}
 
+                {% set dev.value = dev.value + 1 %}
+                <div class="col lg-6">
+                    <img src = '{{totalImgArr[dev.value-1]}}'></img>
+                    <h6>{{totalTitleArr[dev.value-1]}}</h6>
+                    <a href = '{{totalUrlArr[dev.value-1]}}'>{{totalStockArr[dev.value-1]}}</a>
+      
+                </div>
+            
+            {% endfor %}
+        </div>
     {% endif %}
 
 </body>
