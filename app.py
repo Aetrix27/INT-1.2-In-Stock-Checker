@@ -11,8 +11,9 @@ urlPs5 = 'https://www.amazon.com/PlayStation-5-Console/dp/B08FC5L3RG?ref_=ast_st
 xboxUrls = ['https://www.amazon.com/Xbox-X/dp/B08H75RTZ8/ref=sr_1_13?dchild=1&keywords=xbox+series+x&qid=1610417662&sr=8-13',
             'https://www.amazon.com/Xbox-X/dp/B08G9J44ZN/ref=sr_1_13?dchild=1&keywords=xbox%2Bseries%2Bx&qid=1610417662&sr=8-13&th=1']
 
+s = HTMLSession()
+
 def getItemInfo(url):
-    s = HTMLSession()
     r = s.get(url)
     r.html.render()
 
