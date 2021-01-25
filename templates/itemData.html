@@ -80,13 +80,13 @@
         {% set dev = namespace(value=0) %}
        
         <div class="row m-5">  
-            {% for row in range(totalTitleArr|length) %}
-
-                {% set dev.value = dev.value + 1 %}
+            {% for row in range(totalDict['totalTitleArr']|length) %}
+      
+            {% set dev.value = dev.value + 1 %}
                 <div class="col lg-6">
-                    <img src = '{{totalImgArr[dev.value-1]}}'></img>
-                    <h6>{{totalTitleArr[dev.value-1]}}</h6>
-                    <a href = '{{totalUrlArr[dev.value-1]}}'>{{totalStockArr[dev.value-1]}}</a>
+                    <img src = '{{totalDict["totalImgArr"][dev.value-1]}}'></img>
+                    <h6>{{totalDict['totalTitleArr'][dev.value-1]}}</h6>
+                    <a href = '{{totalDict["totalUrlArr"][dev.value-1]}}'>{{totalDict['totalStockArr'][dev.value-1]}}</a>
       
                 </div>
             
