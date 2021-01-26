@@ -33,13 +33,13 @@
         {% set dev = namespace(value=0) %}
        
             <div class="row m-5">  
-                {% for row in range(graphicsCardInfo["imgArr"]|length) %}
+                {% for row in range(graphicsCardInfo.imgArr|length) %}
 
                 {% set dev.value = dev.value + 1 %}
                     <div class="col lg-6">
-                        <img src = '{{graphicsCardInfo["imgArr"][dev.value-1]}}'></img>
+                        <img src = '{{graphicsCardInfo.imgArr[dev.value-1]}}'></img>
                         <h6>{{graphicsCardInfo['titleArr'][dev.value-1]}}</h6>
-                        <a href = '{{graphicsCardInfo["urlArr"][dev.value-1]}}'>{{graphicsCardInfo['stockArr'][dev.value-1]}}</a>
+                        <a href = '{{graphicsCardInfo.urlArr[dev.value-1]}}'>{{graphicsCardInfo['stockArr'][dev.value-1]}}</a>
                     </div>
                 
                 {% endfor %}
@@ -62,13 +62,13 @@
         {% set dev2 = namespace(value=0) %}
         
         <div class="row m-5">  
-            {% for row in range(xboxInfo["imgArr"]|length) %}
+            {% for row in range(xboxInfo.imgArr|length) %}
 
             {% set dev2.value = dev2.value + 1 %}
                 <div class="col lg-6">
-                    <img src = '{{xboxInfo["imgArr"][dev2.value-1]}}'></img>
-                    <h6>{{xboxInfo['titleArr'][dev2.value-1]}}</h6>
-                    <a href = '{{xboxInfo["urlArr"][dev2.value-1]}}'>{{xboxInfo['stockArr'][dev2.value-1]}}</a>
+                    <img src = '{{xboxInfo.imgArr[dev2.value-1]}}'></img>
+                    <h6>{{xboxInfo.titleArr[dev2.value-1]}}</h6>
+                    <a href = '{{xboxInfo.urlArr[dev2.value-1]}}'>{{xboxInfo['stockArr'][dev2.value-1]}}</a>
                 </div>
             
             {% endfor %}

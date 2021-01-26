@@ -35,34 +35,29 @@ def getItemInfo(url):
     
     product['url'] = url
 
-    #   'price': 'item unavailable',
-
     return product
 
-def addDictValues(context, product, loopNum, itemInfo, name):
-    productImage = 'img' + str(loopNum+1) 
-    productTitle = 'title' + str(loopNum+1)
-    productStock = 'stock' + str(loopNum+1)
-    productUrl = 'url' + str(loopNum+1)
+class Product:
+    def __init__(self, name):
+        self.imgArr = []
+        self.titleArr = []
+        self.stockArr = []
+        self.urlArr = []
+        self.name = name
+        self.image = ''
+        self.title = ''
+        self.stock = ''
+        self.url = ''
 
-    context['imgName'] = productImage
-    context['titleName'] = productTitle
-    context['stock'] = productStock
-    context['url'] = productUrl
+def addDictValues(product, itemInfo):
+    itemInfo.imgArr.append(product['image'])
+    itemInfo.titleArr.append(product['title'])
+    itemInfo.stockArr.append(product['stock'])
+    itemInfo.urlArr.append(product['url'])
 
-    context[name]['imgArr'].append(product['image'])
-    context[name]['titleArr'].append(product['title'])
-    context[name]['stockArr'].append(product['stock'])
-    context[name]['urlArr'].append(product['url'])
+    return itemInfo
 
-    context[productImage] = product['image']
-    context[productTitle] = product['title']
-    context[productStock] = product['stock']
-    context[productUrl] = product['url']
-
-    return context, itemInfo
-
-def updateContext(context, totalItemArr, totalDict):
+def updateContext(totalItemArr, totalDict):
     totalImgArr = []
     totalTitleArr = []
     totalStockArr = []
@@ -77,60 +72,23 @@ def updateContext(context, totalItemArr, totalDict):
     }
 
     for productName in totalItemArr: 
-        for ind in range(len(context[productName['name']]['imgArr'])):
-            print(context[productName['name']]['imgArr'][ind])
-            totalDict['totalImgArr'].append(context[productName['name']]['imgArr'][ind])
-            totalDict['totalTitleArr'].append(context[productName['name']]['titleArr'][ind])
-            totalDict['totalStockArr'].append(context[productName['name']]['stockArr'][ind])
-            totalDict['totalUrlArr'].append(context[productName['name']]['urlArr'][ind])
+        for ind in range(len(productName.imgArr)):
+            totalDict['totalImgArr'].append(productName.imgArr[ind])
+            totalDict['totalTitleArr'].append(productName.titleArr[ind])
+            totalDict['totalStockArr'].append(productName.stockArr[ind])
+            totalDict['totalUrlArr'].append(productName.urlArr[ind])
     
-    return context, totalDict
-
+    return totalDict
 
 productArr = [getItemInfo(graphicsCardUrls[0])]
 product3 = getItemInfo(urlPs5)
 xboxItemArr = [getItemInfo(xboxUrls[0]), getItemInfo(xboxUrls[1])]
 
-class Product:
-    def __init__(self, image, title, stock, url):
-        self.image = image
-        self.title = title
-        self.stock = stock
-        self.url = url
-
-
 @app.route('/')
 def home():
-    imgArr = []
-    titleArr = []
-    stockArr = []
-    urlArr = []
-    imgArr2 = []
-    titleArr2 = []
-    stockArr2 = []
-    urlArr2 = []
     totalDict = {}
-
-    name = 'graphicsCardInfo'
-    name2 = 'xboxInfo'
-
-    graphicsCardInfo = {
-        'name' : name,
-        'imgArr' : imgArr,
-        'titleArr' : titleArr,
-        'stockArr' : stockArr,
-        'urlArr' : urlArr
-
-    }
-
-    xboxInfo = {
-        'name' : name2,
-        'imgArr' : imgArr2,
-        'titleArr' : titleArr2,
-        'stockArr' : stockArr2,
-        'urlArr' : urlArr2
-
-    }
+    graphicsCardInfo = Product('graphicsCardInfo')
+    xboxInfo = Product('xboxInfo')
 
     context = {
         'graphicsCardInfo' : graphicsCardInfo,
@@ -142,18 +100,13 @@ def home():
     totalItemArr = [graphicsCardInfo, xboxInfo]
 
     for url in range(len(graphicsCardUrls)):
-        newContext, newGraphicsCardInfo = addDictValues(context, productArr[url], url, graphicsCardInfo, name)
-        graphicsCardInfo.update(newGraphicsCardInfo)
-        context.update(newContext)
+        graphicsCardInfo = addDictValues(productArr[url], graphicsCardInfo)
 
     for url in range(len(xboxUrls)):
-        newContext2, newXboxInfo = addDictValues(context, xboxItemArr[url], url, xboxInfo, name2)
-        xboxInfo.update(newXboxInfo)
-        context.update(newContext2)
+        xboxInfo = addDictValues(xboxItemArr[url], xboxInfo)
 
-    updatedContext, updatedTotalDict = updateContext(context, totalItemArr, totalDict)
+    updatedTotalDict = updateContext(totalItemArr, totalDict)
     totalDict.update(updatedTotalDict) 
-    context.update(updatedContext)
     
     context['imgSrcPs5'] = product3['image']
     context['titlePs5'] = product3['title']
@@ -185,36 +138,9 @@ def itemData():
     elif select == "All":
         allChosen = True
 
-    imgArr = []
-    titleArr = []
-    stockArr = []
-    urlArr = []
-    imgArr2 = []
-    titleArr2 = []
-    stockArr2 = []
-    urlArr2 = []
     totalDict = {}
-
-    name = 'graphicsCardInfo'
-    name2 = 'xboxInfo'
-
-    graphicsCardInfo = {
-        'name' : name,
-        'imgArr' : imgArr,
-        'titleArr' : titleArr,
-        'stockArr' : stockArr,
-        'urlArr' : urlArr
-
-    }
-
-    xboxInfo = {
-        'name' : name2,
-        'imgArr' : imgArr2,
-        'titleArr' : titleArr2,
-        'stockArr' : stockArr2,
-        'urlArr' : urlArr2
-
-    }
+    graphicsCardInfo = Product('graphicsCardInfo')
+    xboxInfo = Product('xboxInfo')
 
     context = {
         'graphicsCardInfo' : graphicsCardInfo,
@@ -230,18 +156,13 @@ def itemData():
     totalItemArr = [graphicsCardInfo, xboxInfo]
 
     for url in range(len(graphicsCardUrls)):
-        newContext, newGraphicsCardInfo = addDictValues(context, productArr[url], url, graphicsCardInfo, name)
-        graphicsCardInfo.update(newGraphicsCardInfo)
-        context.update(newContext)
+        graphicsCardInfo = addDictValues(productArr[url], graphicsCardInfo)
 
     for url in range(len(xboxUrls)):
-        newContext2, newXboxInfo = addDictValues(context, xboxItemArr[url], url, xboxInfo, name2)
-        xboxInfo.update(newXboxInfo)
-        context.update(newContext2)
+        xboxInfo = addDictValues(xboxItemArr[url], xboxInfo)
 
-    updatedContext, updatedTotalDict = updateContext(context, totalItemArr, totalDict)
+    updatedTotalDict = updateContext(totalItemArr, totalDict)
     totalDict.update(updatedTotalDict) 
-    context.update(updatedContext)
     
     context['imgSrcPs5'] = product3['image']
     context['titlePs5'] = product3['title']
@@ -254,7 +175,6 @@ def itemData():
     totalDict['totalUrlArr'].append(product3['url'])
 
     return render_template('itemData.html', **context) 
-
 
 
 if __name__ == '__main__':
